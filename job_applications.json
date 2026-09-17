@@ -1,82 +1,72 @@
-[
-  {
-    "id": 1,
+{
+  "A001": {
     "company": "TCS",
     "role": "Data Scientist",
     "status": "Applied",
     "date_applied": "2026-09-01",
     "notes": "Applied through company website"
   },
-  {
-    "id": 2,
+  "A002": {
     "company": "Infosys",
     "role": "Machine Learning Engineer",
     "status": "Interviewing",
     "date_applied": "2026-08-25",
     "notes": "Technical round scheduled for next week"
   },
-  {
-    "id": 3,
+  "A003": {
     "company": "Accenture",
     "role": "AI Analyst",
     "status": "Offer",
     "date_applied": "2026-08-15",
     "notes": "Received offer letter, negotiating salary"
   },
-  {
-    "id": 4,
+  "A004": {
     "company": "Cognizant",
     "role": "Junior Data Analyst",
     "status": "Applied",
     "date_applied": "2026-09-05",
     "notes": "Referral from college alumni"
   },
-  {
-    "id": 5,
+  "A005": {
     "company": "Wipro",
     "role": "Python Developer",
     "status": "Rejected",
     "date_applied": "2026-08-10",
     "notes": "Did not clear coding test"
   },
-  {
-    "id": 6,
+  "A006": {
     "company": "HCL Technologies",
     "role": "AI Intern",
     "status": "Interviewing",
     "date_applied": "2026-08-28",
     "notes": "HR round completed"
   },
-  {
-    "id": 7,
+  "A007": {
     "company": "Capgemini",
     "role": "Data Engineer",
     "status": "Applied",
     "date_applied": "2026-09-08",
     "notes": "Waiting for response"
   },
-  {
-    "id": 8,
+  "A008": {
     "company": "Tech Mahindra",
     "role": "ML Ops Engineer",
     "status": "Rejected",
     "date_applied": "2026-08-20",
     "notes": "Position filled internally"
   },
-  {
-    "id": 9,
+  "A009": {
     "company": "Deloitte",
     "role": "Business Analyst",
     "status": "Applied",
     "date_applied": "2026-09-10",
     "notes": "Applied via LinkedIn"
   },
-  {
-    "id": 10,
+  "A0010":{
     "company": "IBM",
     "role": "Research Associate - AI",
     "status": "Interviewing",
     "date_applied": "2026-08-30",
     "notes": "Panel interview scheduled"
   }
-]
+}
