@@ -64,7 +64,7 @@ jobhunt/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/<your-username>/jobhunt.git
+git clone https://github.com/<your-username>/Career_Track.git
 cd jobhunt
 
 # 2. Create a virtual environment
