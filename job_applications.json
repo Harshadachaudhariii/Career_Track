@@ -1,72 +1,145 @@
 {
-  "A001": {
-    "company": "TCS",
-    "role": "Data Scientist",
-    "status": "Applied",
-    "date_applied": "2026-09-01",
-    "notes": "Applied through company website"
-  },
-  "A002": {
-    "company": "Infosys",
-    "role": "Machine Learning Engineer",
-    "status": "Interviewing",
-    "date_applied": "2026-08-25",
-    "notes": "Technical round scheduled for next week"
-  },
-  "A003": {
-    "company": "Accenture",
-    "role": "AI Analyst",
-    "status": "Offer",
-    "date_applied": "2026-08-15",
-    "notes": "Received offer letter, negotiating salary"
-  },
-  "A004": {
-    "company": "Cognizant",
-    "role": "Junior Data Analyst",
-    "status": "Applied",
-    "date_applied": "2026-09-05",
-    "notes": "Referral from college alumni"
-  },
-  "A005": {
-    "company": "Wipro",
-    "role": "Python Developer",
-    "status": "Rejected",
-    "date_applied": "2026-08-10",
-    "notes": "Did not clear coding test"
-  },
-  "A006": {
-    "company": "HCL Technologies",
-    "role": "AI Intern",
-    "status": "Interviewing",
-    "date_applied": "2026-08-28",
-    "notes": "HR round completed"
-  },
-  "A007": {
-    "company": "Capgemini",
-    "role": "Data Engineer",
-    "status": "Applied",
-    "date_applied": "2026-09-08",
-    "notes": "Waiting for response"
-  },
-  "A008": {
-    "company": "Tech Mahindra",
-    "role": "ML Ops Engineer",
-    "status": "Rejected",
-    "date_applied": "2026-08-20",
-    "notes": "Position filled internally"
-  },
-  "A009": {
-    "company": "Deloitte",
-    "role": "Business Analyst",
-    "status": "Applied",
-    "date_applied": "2026-09-10",
-    "notes": "Applied via LinkedIn"
-  },
-  "A0010":{
-    "company": "IBM",
-    "role": "Research Associate - AI",
-    "status": "Interviewing",
-    "date_applied": "2026-08-30",
-    "notes": "Panel interview scheduled"
-  }
+    "A001": {
+        "company": "TCS",
+        "role": "Data Scientist",
+        "status": "Applied",
+        "date_applied": "2026-09-01",
+        "location": "Pune",
+        "job_type": "Full-time",
+        "application_source": "Company Website",
+        "job_url": "https://tcs.com/careers/data-scientist",
+        "salary": null,
+        "interview_date": null,
+        "notes": "Applied through company website"
+    },
+    "A002": {
+        "company": "Infosys",
+        "role": "Machine Learning Engineer",
+        "status": "Interviewing",
+        "date_applied": "2026-08-25",
+        "location": "Mysore",
+        "job_type": "Full-time",
+        "application_source": "LinkedIn",
+        "job_url": "https://infosys.com/jobs/ml-engineer",
+        "salary": null,
+        "interview_date": "2026-09-20",
+        "notes": "Technical round scheduled for next week"
+    },
+    "A003": {
+        "company": "Accenture",
+        "role": "AI Analyst",
+        "status": "Offer",
+        "date_applied": "2026-08-15",
+        "location": "Bangalore",
+        "job_type": "Full-time",
+        "application_source": "Referral",
+        "job_url": "https://accenture.com/ai-analyst",
+        "salary": "8 LPA",
+        "interview_date": "2026-09-05",
+        "notes": "Received offer letter, negotiating salary"
+    },
+    "A004": {
+        "company": "Cognizant",
+        "role": "Junior Data Analyst",
+        "status": "Applied",
+        "date_applied": "2026-09-05",
+        "location": "Remote",
+        "job_type": "Full-time",
+        "application_source": "Referral",
+        "job_url": null,
+        "salary": null,
+        "interview_date": null,
+        "notes": "Referral from college alumni"
+    },
+    "A005": {
+        "company": "Wipro",
+        "role": "Python Developer",
+        "status": "Rejected",
+        "date_applied": "2026-08-10",
+        "location": "Hyderabad",
+        "job_type": "Full-time",
+        "application_source": "Naukri",
+        "job_url": "https://wipro.com/python-dev",
+        "salary": null,
+        "interview_date": "2026-08-20",
+        "notes": "Did not clear coding test"
+    },
+    "A006": {
+        "company": "HCL Technologies",
+        "role": "AI Intern",
+        "status": "Interviewing",
+        "date_applied": "2026-09-18",
+        "location": "Noida",
+        "job_type": "Internship",
+        "application_source": "Company Website",
+        "job_url": "https://hcltech.com/internships/ai",
+        "salary": "5k/month",
+        "interview_date": "2026-09-18",
+        "notes": "HR round completed"
+    },
+    "A007": {
+        "company": "Capgemini",
+        "role": "Data Engineer",
+        "status": "Applied",
+        "date_applied": "2026-09-08",
+        "location": "Pune",
+        "job_type": "Full-time",
+        "application_source": "LinkedIn",
+        "job_url": "https://capgemini.com/data-engineer",
+        "salary": null,
+        "interview_date": null,
+        "notes": "Waiting for response"
+    },
+    "A008": {
+        "company": "Tech Mahindra",
+        "role": "ML Ops Engineer",
+        "status": "Rejected",
+        "date_applied": "2026-08-20",
+        "location": "Mumbai",
+        "job_type": "Full-time",
+        "application_source": "Company Website",
+        "job_url": "https://techmahindra.com/mlops",
+        "salary": null,
+        "interview_date": null,
+        "notes": "Position filled internally"
+    },
+    "A009": {
+        "company": "Deloitte",
+        "role": "Business Analyst",
+        "status": "Applied",
+        "date_applied": "2026-09-10",
+        "location": "Gurugram",
+        "job_type": "Full-time",
+        "application_source": "LinkedIn",
+        "job_url": "https://deloitte.com/ba-role",
+        "salary": null,
+        "interview_date": null,
+        "notes": "Applied via LinkedIn"
+    },
+    "A010": {
+        "company": "IBM",
+        "role": "Research Associate - AI",
+        "status": "Interviewing",
+        "date_applied": "2026-08-30",
+        "location": "Bangalore",
+        "job_type": "Full-time",
+        "application_source": "Referral",
+        "job_url": "https://ibm.com/research-ai",
+        "salary": null,
+        "interview_date": "2026-09-25",
+        "notes": "Panel interview scheduled"
+    },
+    "A011": {
+        "company": "Red Hat",
+        "role": "Machine Learning Engineer",
+        "status": "Applied",
+        "date_applied": "2026-09-18",
+        "location": "Pune",
+        "job_type": "Internship",
+        "application_source": "Company Website",
+        "job_url": "https://red_hat.com/career/machine-learning-engineer",
+        "salary": "6 LPA",
+        "interview_date": "2026-09-18",
+        "notes": "string"
+    }
 }
