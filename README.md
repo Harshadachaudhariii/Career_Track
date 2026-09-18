@@ -129,15 +129,6 @@ curl -X POST http://127.0.0.1:8000/applications/create \
 
 ---
 
-## Roadmap
-
-- [ ] Persist data to a real database (SQLite/PostgreSQL)
-- [ ] Authentication for multi-user tracking
-- [ ] Export applications to CSV/PDF
-- [ ] Email/calendar reminders for interviews
-- [ ] Dark/light theme toggle
-
----
 
 
 <p align="center">Built with FastAPI, GSAP, and a lot of job-search hope. </p>
