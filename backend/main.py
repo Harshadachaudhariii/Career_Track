@@ -3,14 +3,32 @@ import json
 from pydantic import BaseModel, AnyUrl, Field
 from typing import Optional, Annotated
 from datetime import date 
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
+from enum import Enum
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 
 app = FastAPI()
-
+app.mount("/static", StaticFiles(directory="static"), name="static")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (for development)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+class ApplicationStatus(str, Enum):
+    APPLIED = "Applied"
+    INTERVIEWING = "Interviewing"
+    OFFER = "Offer"
+    REJECTED = "Rejected"
+    
 class Application(BaseModel):
     company: str
     role: str
-    status: str
+    status: ApplicationStatus
     date_applied: date = Field(default_factory=date.today)
     location: Optional[str] = None
     job_type: Optional[str] = None
@@ -23,7 +41,7 @@ class Application(BaseModel):
 class ApplicationUpdate(BaseModel):
     company: Optional[str]=None
     role: Optional[str]=None
-    status: Optional[str]=None
+    status: Optional[ApplicationStatus]=None
     date_applied : Optional[date]=None
     location: Optional[str] = None
     job_type: Optional[str] = None
@@ -36,7 +54,7 @@ class ApplicationUpdate(BaseModel):
 class ApplicationFilter(BaseModel):
     company: Optional[str]=None
     role: Optional[str]=None
-    status: Optional[str]=None
+    status: Optional[ApplicationStatus]=None
     date_applied : Optional[date]=None
     location: Optional[str] = None
     job_type: Optional[str] = None
@@ -73,9 +91,9 @@ def save_data(data):
     with open('job_applications.json','w') as f:
         json.dump(data, f, indent=4)
 
-@app.get("/")
-def hello():
-    return {"message":"Job application Tracker System API."}
+@app.get("/", response_class=HTMLResponse)
+def read_root():
+    return FileResponse("templates/index.html")
 
 @app.get("/about")
 def about():

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JobHunt — FastAPI Application Tracker</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <base target="_blank">
+</head>
+<body>
+    
+    <div class="aurora"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="grid-overlay"></div>
+    <canvas id="particles"></canvas>
+    <canvas id="confetti-canvas"></canvas>
+    
+    <div class="container">
+        <!-- Header -->
+        
+        <header id="app-header">
+        <div class="logo">Career Tracker</div>
+        <button class="btn-primary" onclick="openModal()">+ New Application</button>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tabs-nav" id="tabs-nav">
+            <button class="tab-btn active" data-tab="tracking" onclick="switchTab('tracking')">
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="4" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="15" width="7" height="5" rx="1.5"/>
+                    <rect x="14" y="13" width="7" height="7" rx="1.5"/>
+                </svg>
+                Tracking
+            </button>
+            <button class="tab-btn" data-tab="overview" onclick="switchTab('overview')">
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"/>
+                    <rect x="7" y="13" width="3" height="5" rx="0.5"/>
+                    <rect x="12.5" y="9" width="3" height="9" rx="0.5"/>
+                    <rect x="18" y="5" width="3" height="13" rx="0.5"/>
+                </svg>
+                Overview
+            </button>
+            <div class="tab-indicator" id="tab-indicator"></div>
+        </div>
+
+        <!-- ==================== TRACKING TAB ==================== -->
+        <div class="tab-panel active" id="panel-tracking">
+
+            <div class="dashboard-controls" id="dash-controls">
+                <h2 class="section-title">Job Applications</h2>
+                <div class="controls-right">
+                    <div class="search-box">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" id="search-input" placeholder="Search company or role..." oninput="renderUI()">
+                    </div>
+                    <div class="filter-pills" id="filter-pills">
+                        <button class="pill active" data-status="All" onclick="setFilter(this)">All</button>
+                        <button class="pill" data-status="Applied" onclick="setFilter(this)">Applied</button>
+                        <button class="pill" data-status="Interviewing" onclick="setFilter(this)">Interviewing</button>
+                        <button class="pill" data-status="Offer" onclick="setFilter(this)">Offer</button>
+                        <button class="pill" data-status="Rejected" onclick="setFilter(this)">Rejected</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jobs-grid" id="jobs-container">
+                <div class="skeleton"></div>
+                <div class="skeleton"></div>
+                <div class="skeleton"></div>
+            </div>
+
+        </div>
+
+        <!-- ==================== OVERVIEW TAB ==================== -->
+        <div class="tab-panel" id="panel-overview">
+
+            <h2 class="section-title" style="margin-bottom: 1rem;" id="stats-title">Analytics Overview</h2>
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card stat-applied">
+                    <div class="stat-top">
+                        <h4>Applied</h4>
+                        <div class="stat-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="number" id="stat-applied" data-target="0">0</div>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="bar-applied"></div></div>
+                    <span class="pct" id="pct-applied"></span>
+                </div>
+
+                <div class="stat-card stat-interview">
+                    <div class="stat-top">
+                        <h4>Interviewing</h4>
+                        <div class="stat-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                                <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+                                <line x1="12" y1="18" x2="12" y2="22"/>
+                                <line x1="9" y1="22" x2="15" y2="22"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="number" id="stat-interview" data-target="0">0</div>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="bar-interviewing"></div></div>
+                    <span class="pct" id="pct-interviewing"></span>
+                </div>
+
+                <div class="stat-card stat-offer">
+                    <div class="stat-top">
+                        <h4>Offers</h4>
+                        <div class="stat-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 21h8"/><path d="M12 17v4"/>
+                                <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/>
+                                <path d="M7 5H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4"/>
+                                <path d="M17 5h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="number" id="stat-offer" data-target="0">0</div>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="bar-offer"></div></div>
+                    <span class="pct" id="pct-offer"></span>
+                </div>
+
+                <div class="stat-card stat-rejected">
+                    <div class="stat-top">
+                        <h4>Rejected</h4>
+                        <div class="stat-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21l7.78-7.55 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/>
+                                <path d="M12 8v3"/><path d="M12 14h.01"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="number" id="stat-rejected" data-target="0">0</div>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="bar-rejected"></div></div>
+                    <span class="pct" id="pct-rejected"></span>
+                </div>
+            </div>
+
+            <div class="overview-extra" id="overview-extra">
+                <div class="ov-card ov-gauge">
+                    <h4>Success Rate</h4>
+                    <div class="gauge" id="success-gauge">
+                        <div class="gauge-value" id="success-value">0%</div>
+                    </div>
+                    <p class="ov-sub" id="success-sub">Offers ÷ total applications</p>
+                </div>
+
+                <div class="ov-card">
+                    <h4>Source Breakdown</h4>
+                    <div id="source-breakdown" class="breakdown-list"></div>
+                </div>
+
+                <div class="ov-card">
+                    <h4>Location Breakdown</h4>
+                    <div id="location-breakdown" class="breakdown-list"></div>
+                </div>
+
+                <div class="ov-card ov-pending">
+                    <h4>Oldest Pending Application</h4>
+                    <div id="oldest-pending-box">—</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Application Modal Form -->
+    <div class="modal" id="job-modal">
+        <div class="modal-content" id="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add Application</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="job-form">
+                <input type="hidden" id="app-id">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Company *</label>
+                        <input type="text" id="company" required placeholder="e.g. Google">
+                    </div>
+                    <div class="form-group">
+                        <label>Role *</label>
+                        <input type="text" id="role" required placeholder="e.g. Backend Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label>Status *</label>
+                        <select id="status">
+                            <option value="Applied">Applied</option>
+                            <option value="Interviewing">Interviewing</option>
+                            <option value="Offer">Offer</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date Applied *</label>
+                        <input type="date" id="date_applied" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="location" placeholder="e.g. Bangalore / Remote">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Type</label>
+                        <input type="text" id="job_type" placeholder="e.g. Full-time / Contract">
+                    </div>
+                    <div class="form-group">
+                        <label>Source</label>
+                        <input type="text" id="application_source" placeholder="e.g. LinkedIn / Referral">
+                    </div>
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="text" id="salary" placeholder="e.g. $120,000 / 15 LPA">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Job URL</label>
+                        <input type="url" id="job_url" placeholder="https://careers.company.com/job/123">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Notes (Max 200 chars)</label>
+                        <textarea id="notes" rows="2" maxlength="200" placeholder="Referral details, tech stack notes..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;" id="submit-btn">Save Application</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="toast-container" id="toast-container"></div>
+    
+    <script src="/static/index.js"></script>
+</body>
+</html>
